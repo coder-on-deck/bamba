@@ -1,6 +1,6 @@
 {
   "name": "sturdy-octo-broccoli",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "express middlewares like behavior but outside a webapp scenario",
   "devDependencies": {
     "expect.js": "^0.3.1",
