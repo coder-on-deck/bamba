@@ -1,6 +1,6 @@
 {
   "name": "middle",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "express middlewares like behavior but outside a webapp scenario",
   "devDependencies": {
     "expect.js": "^0.3.1",
