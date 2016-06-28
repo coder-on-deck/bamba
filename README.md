@@ -5,13 +5,13 @@ uses syntax similar to express middlewares, but outside the context of webapps
 # Installation
 
 ```
-npm i -S middle
+npm i -S sturdy-octo-broccoli
 ```
 
 # Usage Example
 
 ```
-var middle = require('middle')
+var middle = require('sturdy-octo-broccoli')
 
 middle(function (context, next) {
   // do something with context
