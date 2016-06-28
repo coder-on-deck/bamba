@@ -1,6 +1,6 @@
 {
   "name": "middle",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "express middlewares like behavior but outside a webapp scenario",
   "devDependencies": {
     "expect.js": "^0.3.1",
@@ -12,11 +12,14 @@
   "scripts": {
     "test": "npm-run-all lint mocha:coverage",
     "lint": "standard",
-    "lint:watch" : "nodemon --exec 'npm run lint --silent'",
+    "lint:watch": "nodemon --exec 'npm run lint --silent'",
     "mocha:once": "mocha",
     "mocha:coverage": "istanbul cover _mocha"
   },
-  "standard" : {
-    "globals" : ["it","describe"]
+  "standard": {
+    "globals": [
+      "it",
+      "describe"
+    ]
   }
 }
