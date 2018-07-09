@@ -1,7 +1,7 @@
 {
-  "name": "sturdy-octo-broccoli",
+  "name": "bamba",
   "version": "0.0.3",
-  "description": "express middlewares like behavior but outside a webapp scenario",
+  "description": "easily combine functions together",
   "devDependencies": {
     "expect.js": "^0.3.1",
     "istanbul": "^0.4.4",
