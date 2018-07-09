@@ -5,18 +5,18 @@ uses syntax similar to express middlewares, but outside the context of webapps
 # Installation
 
 ```
-npm i -S sturdy-octo-broccoli
+npm i bamba
 ```
 
 # Usage Example
 
 ```
-var middle = require('sturdy-octo-broccoli')
+var bamba = require('bamba')
 
-middle(function (context, next) {
+bamba(function (context, next) {
   // do something with context
 
-  next(); // call next when you're done.
+  next(); // call next when you're done. alternatively, return a promise
 }, function (context, next) {
   // modifications on context are available in the next function
 
@@ -35,4 +35,3 @@ middle(function (context, next) {
 
 
 ```
-

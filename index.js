@@ -2,9 +2,9 @@ function invokeMiddleware (err, middlewares, context, index, callback) {
   var m = middlewares[index]
   if (index < middlewares.length) {
     if (m.length === 3) {
-      m(err, context, callback)
+      return m(err, context, callback)
     } else { // 2
-      m(context, callback)
+      return m(context, callback)
     }
   }
 }
@@ -18,7 +18,8 @@ function breakdown (middlewares) {
 }
 
 function invokeMiddlewaresRecursively (middlewares, context, index) {
-  invokeMiddleware(null, middlewares, context, index, function (err) {
+
+  function handleMiddlewareAnswer(err) {
     index++
     if (!err) {
       setTimeout(function () {
@@ -35,17 +36,28 @@ function invokeMiddlewaresRecursively (middlewares, context, index) {
         index++
       }
     }
-  })
+  }
+
+  const middlewareResult = invokeMiddleware(null, middlewares, context, index, handleMiddlewareAnswer);
+  if (middlewareResult instanceof Promise) {
+    middlewareResult.then(result=>{
+      context._result = result;
+      handleMiddlewareAnswer(null);
+    }).catch(err => {
+      handleMiddlewareAnswer(err);
+    })
+  } else if (middlewareResult !== undefined && typeof middlewareResult === 'object'){
+    Object.assign(context, middlewareResult);
+    handleMiddlewareAnswer();
+  }
 }
 
 module.exports = function () {
   var _arguments = arguments
-  _arguments = Object.keys(_arguments).map(function (i) {
-    return _arguments[i]
-  })
+  _arguments = Object.values(_arguments);
   var args = breakdown(_arguments)
   var middlewares = args.middlewares
   var context = args.context
   var index = 0
-  invokeMiddlewaresRecursively(middlewares, context, index)
+  return invokeMiddlewaresRecursively(middlewares, context, index)
 }
